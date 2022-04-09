@@ -15,13 +15,14 @@ router.use(express.text());
 // @desc Justify the body
 // @route 	POST /
 // @access 	Public
-router.post("/", checkToken, justifyBody, countWords, async (req, res) => {
-  res.json(req.body);
+
+router.post("/", checkToken, justifyBody, countWords, (req, res) => {
+  res.render("justifiedText", { text: req.body });
 });
-// @desc HTML
+// @desc The result
 // @route 	GET /
 // @access 	Public
 router.get("/", (req, res) => {
-  res.render("justifiedText", { text: req.body });
+  res.render("justifyText");
 });
 module.exports = router;

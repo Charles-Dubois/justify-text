@@ -16,7 +16,7 @@ async function countWords(req, res, next) {
     console.error(error);
     return res.status(400).json({ message: "error from count word" });
   }
-  if (result.words >= 80) {
+  if (result.words >= 80000) {
     return res.status(402).json({ message: "Payment Required." });
   }
   console.log(result.words);
