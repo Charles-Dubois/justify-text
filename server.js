@@ -11,13 +11,19 @@ const express = require("express"),
   authRouter = require("./routers/auth"),
   // port // env
   { MONGODB_URI } = process.env;
-(PORT = process.env.PORT || 8000),
-  //* middlewares
-  app.use(express.urlencoded({ extended: true }));
+PORT = process.env.PORT || 8000;
+
+//* middlewares
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "/public")));
+
+// handlebars
 app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
 app.use(cookieParser());
+
+//mongo DB
 mongoose
   .connect(MONGODB_URI, { useNewUrlParser: true })
   .then(console.log("connected to mongo"))
