@@ -3,8 +3,9 @@ const express = require("express"),
   router = express.Router(),
   jwt = require("jsonwebtoken"),
   bcrypt = require("bcrypt"),
-  //model
+  //models
   AuthModel = require("../models/authModel"),
+  TotalOfWordsModel = require("../models/countWordsModel"),
   // env
   { SECRET } = process.env;
 //middleware
@@ -25,11 +26,13 @@ router.get("/", (req, res) => {
 // @route 	POST /
 // @access 	Public
 router.post("/register", validAuth, async (req, res) => {
+  let user;
   try {
     // hash the password
     req.body.password = await bcrypt.hash(req.body.password, 12);
     // create a new user
-    await AuthModel.create(req.body);
+    req.body.words = 0;
+    user = await AuthModel.create(req.body);
   } catch (error) {
     console.error(error);
     return res.status(400).json({ message: "This email is not availaible" });

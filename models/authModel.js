@@ -1,6 +1,6 @@
 // dependencies
 const mongoose = require("mongoose"),
-  //model mongo DB
+  //model mongo DB to stock email and hashed password of our users
 
   authSchema = mongoose.Schema({
     email: {
@@ -12,6 +12,10 @@ const mongoose = require("mongoose"),
       type: String,
       required: true,
       minLenght: 6,
+    },
+    words: {
+      type: Number,
+      required: true,
     },
   });
 const AuthModel = mongoose.model("user", authSchema);
