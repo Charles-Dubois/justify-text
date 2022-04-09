@@ -9,10 +9,10 @@ const authRouter = require("./routers/auth");
 const PORT = process.env.PORT || 8000;
 
 // middlewares
-app.use(express.json());
+app.use(express.text());
 
 // router path
-app.use("/justify-text", justifyTextRouter);
+app.use("/api/justify", justifyTextRouter);
 app.use("/auth", authRouter);
 
 // path
