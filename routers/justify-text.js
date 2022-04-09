@@ -1,5 +1,3 @@
-const req = require("express/lib/request");
-
 // dependencies
 const express = require("express"),
   router = express.Router(),
@@ -22,7 +20,7 @@ router.post("/", checkToken, justifyBody, countWords, (req, res) => {
 // @desc The result
 // @route 	GET /api/justify
 // @access 	Public
-router.get("/", (req, res) => {
+router.get("/", (_req, res) => {
   res.render("justifyText");
 });
 module.exports = router;

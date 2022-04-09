@@ -24,7 +24,7 @@ router.get("/login", secureLogin, (req, res) => {
 // @desc HTML
 // @route 	GET /api/token/register
 // @access 	Public
-router.get("/register", (req, res) => {
+router.get("/register", secureLogin, (req, res) => {
   res.render("register");
 });
 

@@ -12,7 +12,9 @@ function justifyBody(req, _res, next) {
   }
   next();
 }
-//* an other try
+
+//* Here I tryed a second method because i had a problem with the balise <br />, the longest bug i had to fix in this case
+//* The method right down is also good but when i fixed my bug i prefered to keep the shortest function
 // function justifyBody(req, _res, next) {
 //   req.wordsToday = req.body.split(" ").length;
 //   const body = req.body.split("");

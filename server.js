@@ -43,7 +43,9 @@ app.get("/", (_req, res) => {
 // listen port
 app.listen(PORT, () => console.log("listen"));
 
-// catch not found
+// @desc Catch not found
+// @route 	GET /
+// @access 	Public
 app.get("*", (_req, res) => {
   return res.status(404).json({ message: "error 404 not found" });
 });
