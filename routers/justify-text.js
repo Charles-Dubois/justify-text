@@ -1,8 +1,10 @@
 // dependencies
-const express = require("express");
-const router = express.Router();
-// middlewares
-const justifyBody = require("../middlewares/justifyBody");
+const express = require("express"),
+  router = express.Router(),
+  // middlewares
+  justifyBody = require("../middlewares/justifyBody");
+
+router.use(express.text());
 
 //path
 router.post("/", justifyBody, (req, res) => {

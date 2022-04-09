@@ -1,7 +1,18 @@
-const express = require("express");
-const router = express.Router();
+const validAuth = require("../middlewares/validAuth");
 
-router.get("/", (_req, res) => {
-  res.send("hello from auth");
+// dependencies
+const express = require("express"),
+  router = express.Router(),
+  jwt = require("jsonwebtoken");
+//middleware
+router.use(express.json());
+
+//path
+router.get("/", (req, res) => {
+  res.send("hello from api token");
+});
+
+router.post("/", validAuth, (req, res) => {
+  res.json(req.body);
 });
 module.exports = router;
