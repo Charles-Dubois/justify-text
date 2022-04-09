@@ -13,7 +13,6 @@ function checkToken(req, res, next) {
     console.error(err);
     return res.status(401).json({ message: "Please login again" });
   }
-
   next();
 }
 module.exports = checkToken;
