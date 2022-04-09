@@ -15,14 +15,21 @@ router.use(express.json());
 //path
 
 // @desc HTML
-// @route 	GET /
+// @route 	GET /login
 // @access 	Public
-router.get("/", (req, res) => {
-  res.send("hello from api token");
+router.get("/login", (req, res) => {
+  res.render("login");
+});
+
+// @desc HTML
+// @route 	GET /register
+// @access 	Public
+router.get("/register", (req, res) => {
+  res.render("register");
 });
 
 // @desc Create an account with email and password
-// @route 	POST /
+// @route 	POST /register
 // @access 	Public
 router.post("/register", validAuth, async (req, res) => {
   let user;
@@ -36,11 +43,11 @@ router.post("/register", validAuth, async (req, res) => {
     console.error(error);
     return res.status(400).json({ message: "This email is not availaible" });
   }
-  res.json("Account created");
+  res.render("createdAcount");
 });
 
 // @desc Login with an email and password
-// @route 	POST /
+// @route 	POST /login
 // @access 	Public
 router.post("/login", validAuth, async (req, res) => {
   let result, ckeckPassword;
@@ -73,6 +80,6 @@ router.post("/login", validAuth, async (req, res) => {
   //add token in cookie
   res.cookie("justifytext", token, { httpOnly: true, secure: false });
 
-  res.json(req.body);
+  res.render("justifyText");
 });
 module.exports = router;

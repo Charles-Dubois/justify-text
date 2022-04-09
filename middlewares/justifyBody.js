@@ -1,6 +1,10 @@
+const res = require("express/lib/response");
+
 // split the body, insert into the body balise </br>, and join it
 function justifyBody(req, _res, next) {
+  console.log(req.body);
   let textArray = req.body.split("");
+
   req.wordsToday = req.body.split(" ").length;
   for (let charater = 1; charater < textArray.length; charater++) {
     if (charater % 79 === 0) {
@@ -8,8 +12,6 @@ function justifyBody(req, _res, next) {
     }
     req.body = textArray.join("");
   }
-
-  next();
 }
 
 module.exports = justifyBody;

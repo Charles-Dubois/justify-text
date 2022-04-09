@@ -1,3 +1,5 @@
+const req = require("express/lib/request");
+
 // dependencies
 const express = require("express"),
   router = express.Router(),
@@ -6,6 +8,7 @@ const express = require("express"),
   checkToken = require("../middlewares/checkToken"),
   countWords = require("../middlewares/countWords");
 router.use(express.text());
+// router.use(express.json());
 
 //path
 
@@ -18,7 +21,7 @@ router.post("/", checkToken, justifyBody, countWords, async (req, res) => {
 // @desc HTML
 // @route 	GET /
 // @access 	Public
-router.get("/", (_req, res) => {
-  res.send("hello from justify text");
+router.get("/", (req, res) => {
+  res.render("justifiedText", { text: req.body });
 });
 module.exports = router;
