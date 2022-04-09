@@ -66,6 +66,9 @@ Extract the file, in the terminal, at the root of the file, execute
 To run the API execute 
 `node server.js`
 
+You can use the API with your browser at http://localhost:8000
+or do some requests with Postman.
+
 ## Usage
 
 List of end
