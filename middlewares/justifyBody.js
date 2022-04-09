@@ -1,10 +1,10 @@
 // split the body, insert into the body balise </br>, and join it
 function justifyBody(req, _res, next) {
-  let textArray = req.body.split("");
+  let textArray = req.body.split("").slice(5);
 
   req.wordsToday = req.body.split(" ").length;
   for (let charater = 1; charater < textArray.length; charater++) {
-    if (charater % 79 === 0) {
+    if (charater % 80 === 0) {
       textArray.splice(charater, 0, "<br />");
     }
 

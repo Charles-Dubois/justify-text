@@ -17,7 +17,7 @@ router.use(express.json());
 // @desc HTML
 // @route 	GET /api/token/login
 // @access 	Public
-router.get("/login", (req, res) => {
+router.get("/login", secureLogin, (req, res) => {
   res.render("login");
 });
 
@@ -49,7 +49,7 @@ router.post("/register", validAuth, async (req, res) => {
 // @desc Login with an email and password
 // @route 	POST /api/token/login
 // @access 	Public
-router.post("/login", validAuth, secureLogin, async (req, res) => {
+router.post("/login", validAuth, async (req, res) => {
   let result, ckeckPassword;
 
   try {
