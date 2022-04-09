@@ -6,30 +6,30 @@ const express = require("express"),
   //models
   AuthModel = require("../models/authModel"),
   // env
-  { SECRET } = process.env;
-//middleware
-validAuth = require("../middlewares/validAuth");
-
+  { SECRET } = process.env,
+  //middleware
+  validAuth = require("../middlewares/validAuth"),
+  secureLogin = require("../middlewares/secureLogin");
 router.use(express.json());
 
 //path
 
 // @desc HTML
-// @route 	GET /login
+// @route 	GET /api/token/login
 // @access 	Public
 router.get("/login", (req, res) => {
   res.render("login");
 });
 
 // @desc HTML
-// @route 	GET /register
+// @route 	GET /api/token/register
 // @access 	Public
 router.get("/register", (req, res) => {
   res.render("register");
 });
 
 // @desc Create an account with email and password
-// @route 	POST /register
+// @route 	POST /api/token/register
 // @access 	Public
 router.post("/register", validAuth, async (req, res) => {
   let user;
@@ -47,9 +47,9 @@ router.post("/register", validAuth, async (req, res) => {
 });
 
 // @desc Login with an email and password
-// @route 	POST /login
+// @route 	POST /api/token/login
 // @access 	Public
-router.post("/login", validAuth, async (req, res) => {
+router.post("/login", validAuth, secureLogin, async (req, res) => {
   let result, ckeckPassword;
 
   try {
@@ -77,6 +77,7 @@ router.post("/login", validAuth, async (req, res) => {
     SECRET,
     { expiresIn: 90000000 }
   );
+
   //add token in cookie
   res.cookie("justifytext", token, { httpOnly: true, secure: false });
 

@@ -19,7 +19,7 @@ async function countWords(req, res, next) {
   if (result.words >= 80000) {
     return res.status(402).json({ message: "Payment Required." });
   }
-  console.log(result.words);
+
   next();
 }
 module.exports = countWords;

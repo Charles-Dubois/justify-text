@@ -13,14 +13,14 @@ router.use(express.text());
 //path
 
 // @desc Justify the body
-// @route 	POST /
+// @route 	POST /api/justify
 // @access 	Public
 
 router.post("/", checkToken, justifyBody, countWords, (req, res) => {
   res.render("justifiedText", { text: req.body });
 });
 // @desc The result
-// @route 	GET /
+// @route 	GET /api/justify
 // @access 	Public
 router.get("/", (req, res) => {
   res.render("justifyText");

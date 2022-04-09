@@ -27,7 +27,9 @@ mongoose
 app.use("/api/justify", justifyTextRouter);
 app.use("/api/token", authRouter);
 
-// path HTML
+// @desc Homepage
+// @route 	GET /
+// @access 	Public
 app.get("/", (_req, res) => {
   res.render("homepage");
 });
