@@ -22,7 +22,7 @@ mongoose
 app.use("/api/justify", justifyTextRouter);
 app.use("/api/token", authRouter);
 
-// path
+// path HTML
 app.get("/", (_req, res) => {
   res.send("hello wolrd");
 });

@@ -1,5 +1,6 @@
+// condition librairy joi
 const authJoi = require("../Joi/authJoi");
-
+// check the content of the body use it in the server
 function validAuth(req, res, next) {
   const validation = authJoi.validate(req.body);
   if (validation.error) {

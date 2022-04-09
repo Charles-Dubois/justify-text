@@ -1,4 +1,7 @@
+// dependencies
 const mongoose = require("mongoose"),
+  //model mongo DB
+
   authSchema = mongoose.Schema({
     email: {
       type: String,

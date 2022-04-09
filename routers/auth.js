@@ -14,7 +14,7 @@ router.use(express.json());
 
 //path
 
-// @desc Useless
+// @desc HTML
 // @route 	GET /
 // @access 	Public
 router.get("/", (req, res) => {
@@ -26,7 +26,9 @@ router.get("/", (req, res) => {
 // @access 	Public
 router.post("/register", validAuth, async (req, res) => {
   try {
+    // hash the password
     req.body.password = await bcrypt.hash(req.body.password, 12);
+    // create a new user
     await AuthModel.create(req.body);
   } catch (error) {
     console.error(error);
@@ -42,9 +44,10 @@ router.post("/login", validAuth, async (req, res) => {
   let result, ckeckPassword;
 
   try {
+    // find the user with his email
     result = await AuthModel.find({ email: req.body.email });
     result = result[0];
-
+    // check the password of the result
     ckeckPassword = await bcrypt.compare(req.body.password, result.password);
   } catch (error) {
     console.error(error);
@@ -53,6 +56,7 @@ router.post("/login", validAuth, async (req, res) => {
   if (!ckeckPassword) {
     return res.json({ message: "Email or password are not valid" });
   }
+  //generate token
   const token = jwt.sign(
     {
       data: "jwt",
@@ -61,6 +65,7 @@ router.post("/login", validAuth, async (req, res) => {
     SECRET,
     { expiresIn: 90000000 }
   );
+  //add token in cookie
   res.cookie("justifytext", token, { httpOnly: true, secure: false });
 
   res.json(req.body);
