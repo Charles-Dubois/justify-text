@@ -2,8 +2,8 @@
 const express = require("express"),
   router = express.Router(),
   // middlewares
-  justifyBody = require("../middlewares/justifyBody");
-
+  justifyBody = require("../middlewares/justifyBody"),
+  checkToken = require("../middlewares/checkToken");
 router.use(express.text());
 
 //path
@@ -11,10 +11,10 @@ router.use(express.text());
 // @desc Justify the body
 // @route 	POST /
 // @access 	Public
-router.post("/", justifyBody, (req, res) => {
+router.post("/", checkToken, justifyBody, (req, res) => {
   res.json(req.body);
 });
-// @desc Useless
+// @desc HTML
 // @route 	GET /
 // @access 	Public
 router.get("/", (_req, res) => {

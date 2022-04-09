@@ -58,10 +58,11 @@ router.post("/login", validAuth, async (req, res) => {
       data: "jwt",
       id: result._id,
     },
-    SECRET
+    SECRET,
+    { expiresIn: 90000000 }
   );
-  res.cookie("justify-text", token, { httpOnly: true, secure: false });
-  console.log(result);
+  res.cookie("justifytext", token, { httpOnly: true, secure: false });
+
   res.json(req.body);
 });
 module.exports = router;
