@@ -5,7 +5,6 @@ const express = require("express"),
   bcrypt = require("bcrypt"),
   //models
   AuthModel = require("../models/authModel"),
-  TotalOfWordsModel = require("../models/countWordsModel"),
   // env
   { SECRET } = process.env;
 //middleware
@@ -52,6 +51,9 @@ router.post("/login", validAuth, async (req, res) => {
     result = result[0];
     // check the password of the result
     ckeckPassword = await bcrypt.compare(req.body.password, result.password);
+    // reset the number of word that the user can justify in 24h
+
+    await AuthModel.findByIdAndUpdate(result.id, { words: 0 });
   } catch (error) {
     console.error(error);
     return res.json({ message: "Email or password are not valid" });
