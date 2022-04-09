@@ -1,6 +1,7 @@
 // dependencies
 require("dotenv").config();
 const express = require("express"),
+  cookieParser = require("cookie-parser"),
   mongoose = require("mongoose"),
   app = express(),
   // routers
@@ -11,10 +12,11 @@ const express = require("express"),
 (PORT = process.env.PORT || 8000),
   //* middlewares
   // app.use(express.text());
-  mongoose
-    .connect(MONGODB_URI, { useNewUrlParser: true })
-    .then(console.log("connected to mongo"))
-    .catch((err) => console.log(err));
+  app.use(cookieParser());
+mongoose
+  .connect(MONGODB_URI, { useNewUrlParser: true })
+  .then(console.log("connected to mongo"))
+  .catch((err) => console.log(err));
 
 // router path
 app.use("/api/justify", justifyTextRouter);
