@@ -1,9 +1,4 @@
 
-
-https://justify-my-text.herokuapp.com/
-
-https://github.com/Charles-Dubois/justify-text
-
 <div align="center">
   <h3 align="center">Justify text</h3>
   <h5 align="center">An API to justify text</h5>
