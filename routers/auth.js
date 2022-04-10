@@ -31,7 +31,7 @@ router.get("/register", secureLogin, (req, res) => {
 // @desc Create an account with email and password
 // @route 	POST /api/token/register
 // @access 	Public
-router.post("/register", validAuth, async (req, res) => {
+router.post("/register", validAuth, secureLogin, async (req, res) => {
   let user;
   try {
     // hash the password
@@ -49,7 +49,7 @@ router.post("/register", validAuth, async (req, res) => {
 // @desc Login with an email and password
 // @route 	POST /api/token/login
 // @access 	Public
-router.post("/login", validAuth, async (req, res) => {
+router.post("/login", validAuth, secureLogin, async (req, res) => {
   let result, ckeckPassword;
 
   try {

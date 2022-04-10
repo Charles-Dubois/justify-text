@@ -1,5 +1,8 @@
+const { redirect } = require("express/lib/response");
+
 // split the body, insert into the body balise </br>, and join it
 function justifyBody(req, _res, next) {
+  req.body.toString();
   let textArray = req.body.split("").slice(5);
 
   req.wordsToday = req.body.split(" ").length;

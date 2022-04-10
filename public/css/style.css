@@ -26,3 +26,8 @@ button {
 label {
   font-size: 1.4rem;
 }
+
+p {
+  text-align: justify;
+  text-align: center;
+}

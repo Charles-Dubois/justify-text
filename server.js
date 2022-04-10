@@ -10,10 +10,10 @@ const express = require("express"),
   justifyTextRouter = require("./routers/justify-text"),
   authRouter = require("./routers/auth"),
   // port // env
-  { MONGODB_URI } = process.env;
-PORT = process.env.PORT || 8000;
-
-//* middlewares
+  { MONGODB_URI } = process.env,
+  PORT = process.env.PORT || 8000,
+  //* middlewares
+  secureLogin = require("./middlewares/secureLogin");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "/public")));
@@ -36,7 +36,7 @@ app.use("/api/token", authRouter);
 // @desc Homepage
 // @route 	GET /
 // @access 	Public
-app.get("/", (_req, res) => {
+app.get("/", secureLogin, (_req, res) => {
   res.render("homepage");
 });
 
