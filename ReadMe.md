@@ -71,7 +71,7 @@ or do some requests with Postman.
 
 ## Usage
 
-List of end
+List of endpoints
 
 ##### /
 
